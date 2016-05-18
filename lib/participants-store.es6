@@ -34,7 +34,7 @@ class ParticipantsStore extends NylasStore {
 
     // Grab the thread from the new focused content
     const focusedThread = FocusedContentStore.focused('thread');
-    if (focusedThread !== undefined) {
+    if (focusedThread !== undefined && focusedThread !== null) {
       if (focusedThread.participants !== undefined) {
         // If we are focused on a thread, take the participants.
         // Clear the content that we're currently showing and `trigger`. Since
