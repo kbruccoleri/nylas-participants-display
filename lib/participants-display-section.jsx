@@ -1,18 +1,32 @@
 import _ from 'underscore';
 import ParticipantsStore from "./participants-store";
-import {React} from 'nylas-exports';
+import {
+  React,
+  Actions,
+} from 'nylas-exports';
 
 // Small React component that renders the user's email profile.
 const EmailProfiles = function EmailProfiles(props) {
 
   // Destructuring the props 
   const {participants} = props;
+
+  handleClick(event) {
+    // This function is to be based through the EmailProfiles react component
+    console.log(query);
+    Actions.findInThread(query);
+  }
   
   // Transform the profile's array of addresses into an array of React elements
   const participantElements = _.map(participants, (participant) => {
     return (
       <div key={participant.email} className="sidebar-participant-email">
-        <a href={"mailto:" + participant.email}>{participant.name}</a>
+        <a href={"mailto:" + participant.email}>
+          {participant.name}
+        </a>
+        <a onClick={handleClick} data-email={participant.email}>
+          Search
+        </a>
       </div>
     );
   });
